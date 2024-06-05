@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Welcome to Homeless Shelters API {% endblock %}</h1>
+    <h2>Search</h2>
+    <form action="/search" method="post">
+        <input type="text" name="query" placeholder="5-digit zip code">
+        <button type="submit">Search</button>
+    </form>
+    {% for post in posts %}
+            <a href="{{ url_for('post', post_id=post['id']) }}">
+                <h2>{{ post['title'] }}</h2>
+            </a>
+            <span class="badge badge-primary">{{ post['created'] }}</span>
+            <hr>
+    {% endfor %}
+{% endblock %}
